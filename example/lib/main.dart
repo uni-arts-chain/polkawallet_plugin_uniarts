@@ -171,7 +171,7 @@ class _MyAppState extends State<MyApp> {
         _changeLang);
     final AssetsContent assets = AssetsContent(_network, _keyring);
     return MaterialApp(
-      title: 'Polkawallet Plugin Uniarts Demo',
+      title: 'Polkawallet Plugin UniArts Demo',
       theme: _theme ?? _getAppTheme(widget.plugins[0].basic.primaryColor),
       localizationsDelegates: [
         AppLocalizationsDelegate(_locale ?? Locale('en', '')),

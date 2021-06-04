@@ -62,7 +62,7 @@ class PluginUniarts extends PolkawalletPlugin {
           primaryColor:
               name == network_name_uniarts ? uniarts_blue : Colors.blue,
           gradientColor:
-              name == network_name_uniarts ? Color(0xFF0000AA) : Colors.red,
+              name == network_name_uniarts ? Color(0xFF55ADFF) : Colors.red,
           backgroundImage: AssetImage(
               'packages/polkawallet_plugin_uniarts/assets/images/public/bg_$name.png'),
           icon: Image.asset(
@@ -98,7 +98,7 @@ class PluginUniarts extends PolkawalletPlugin {
   @override
   final Map<String, Widget> tokenIcons = {
     'UART': Image.asset(
-        'packages/polkawallet_plugin_uniarts/assets/images/tokens/KSM.png'),
+        'packages/polkawallet_plugin_uniarts/assets/images/tokens/UART.png'),
     'DOT': Image.asset(
         'packages/polkawallet_plugin_uniarts/assets/images/tokens/DOT.png'),
   };

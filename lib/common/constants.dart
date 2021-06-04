@@ -32,18 +32,18 @@ const node_list_polkadot = [
 const home_nav_items = [];
 
 const MaterialColor uniarts_blue = const MaterialColor(
-  0xFF0000AA,
+  0xFF55ADFF,
   const <int, Color>{
-    50: const Color(0xFF0000AA),
-    100: const Color(0xFF0000BB),
-    200: const Color(0xFF0000BB),
-    300: const Color(0xFF0000CC),
-    400: const Color(0xFF0000CC),
-    500: const Color(0xFF0000DD),
-    600: const Color(0xFF0000DD),
-    700: const Color(0xFF0000EE),
-    800: const Color(0xFF0000FF),
-    900: const Color(0xFF0000FF),
+    50: const Color(0x6655ADFF),
+    100: const Color(0x7755ADFF),
+    200: const Color(0x8855ADFF),
+    300: const Color(0x9955ADFF),
+    400: const Color(0xAA55ADFF),
+    500: const Color(0xBB55ADFF),
+    600: const Color(0xCC55ADFF),
+    700: const Color(0xDD55ADFF),
+    800: const Color(0xEE55ADFF),
+    900: const Color(0xFF55ADFF),
   },
 );
 

@@ -19,7 +19,7 @@ const Map<String, String> enStaking = {
   'stake.own': 'Own',
   'stake.other': 'Other',
   'stake.warn':
-      '1: The bonded Tokens will be locked for about 28 days on Polkadot(7 days on Uniarts) after unbonding.\n'
+      '1: The bonded Tokens will be locked for about 28 days on Polkadot(7 days on UniArts) after unbonding.\n'
           '2: Your account should always have transferable balance for paying tx fees, so do not bond all your tokens.\n'
           '3: The amount of bonded Tokens needs to meet the minimum requirements(see page: Validators), otherwise no reward will be generated.',
   'stake.payee.warn':
