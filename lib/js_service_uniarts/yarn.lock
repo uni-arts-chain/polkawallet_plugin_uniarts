@@ -1549,7 +1549,7 @@
     memoizee "^0.4.14"
     rxjs "^6.6.6"
 
-"@open-web3/orml-type-definitions@0.9.3", "@open-web3/orml-type-definitions@^0.9.2-0":
+"@open-web3/orml-type-definitions@^0.9.2-0":
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/@open-web3/orml-type-definitions/-/orml-type-definitions-0.9.3.tgz#6bf2ff02c108fa0b4416798f27449f14b16f420f"
   integrity sha512-Sq88InH7Ca5XbPP2xIzXaZukw0lHG9prpK/y/UA51owscJYQr1y3f6+x8qSUVXMQwowajtODKVVZr4a9wBWi/w==
