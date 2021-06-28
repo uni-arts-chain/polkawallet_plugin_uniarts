@@ -1,6 +1,6 @@
 # polkawallet_plugin_uniarts
 
-Basic plugin for polkawallet/app. Support Polkadot & UniArts.
+Basic plugin for polkawallet/app. Support UniArts.
 
 ## Getting Started
 

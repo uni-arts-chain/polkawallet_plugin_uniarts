@@ -7,34 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:polkawallet_plugin_uniarts/common/constants.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/council/candidateDetailPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/council/candidateListPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/council/councilPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/council/councilVotePage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/council/motionDetailPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/democracy/democracyPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/democracy/proposalDetailPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/democracy/referendumVotePage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/treasury/spendProposalPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/treasury/submitProposalPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/treasury/submitTipPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/treasury/tipDetailPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/governance/treasury/treasuryPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/actions/bondExtraPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/actions/controllerSelectPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/actions/payoutPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/actions/rebondPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/actions/redeemPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/actions/rewardDetailPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/actions/setControllerPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/actions/setPayeePage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/actions/stakePage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/actions/stakingDetailPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/actions/unbondPage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/validators/nominatePage.dart';
-import 'package:polkawallet_plugin_uniarts/pages/staking/validators/validatorDetailPage.dart';
 import 'package:polkawallet_plugin_uniarts/service/index.dart';
 import 'package:polkawallet_plugin_uniarts/store/cache/storeCache.dart';
 import 'package:polkawallet_plugin_uniarts/store/index.dart';
@@ -55,27 +27,21 @@ class PluginUniarts extends PolkawalletPlugin {
   PluginUniarts({name = 'uniarts'})
       : basic = PluginBasicData(
           name: name,
-          genesisHash: name == network_name_uniarts
-              ? genesis_hash_uniarts
-              : genesis_hash_polkadot,
-          ss58: name == network_name_uniarts ? 42 : 0,
-          primaryColor:
-              name == network_name_uniarts ? uniarts_blue : Colors.blue,
-          gradientColor:
-              name == network_name_uniarts ? Color(0xFF55ADFF) : Colors.red,
+          genesisHash: genesis_hash_uniarts,
+          ss58: 42,
+          primaryColor: uniarts_blue,
+          gradientColor: Color(0xFF55ADFF),
           backgroundImage: AssetImage(
-              'packages/polkawallet_plugin_uniarts/assets/images/public/bg_$name.png'),
+              'packages/polkawallet_plugin_uniarts/assets/images/public/bg_uniarts.png'),
           icon: Image.asset(
-              'packages/polkawallet_plugin_uniarts/assets/images/public/$name.png'),
+              'packages/polkawallet_plugin_uniarts/assets/images/public/uniarts.png'),
           iconDisabled: Image.asset(
-              'packages/polkawallet_plugin_uniarts/assets/images/public/${name}_gray.png'),
+              'packages/polkawallet_plugin_uniarts/assets/images/public/uniarts_gray.png'),
           jsCodeVersion: 20101,
           isTestNet: false,
         ),
-        recoveryEnabled = name == network_name_uniarts,
-        _cache = name == network_name_uniarts
-            ? StoreCacheUniarts()
-            : StoreCachePolkadot();
+        recoveryEnabled = true,
+        _cache = StoreCacheUniarts();
 
   @override
   final PluginBasicData basic;
@@ -85,22 +51,13 @@ class PluginUniarts extends PolkawalletPlugin {
 
   @override
   List<NetworkParams> get nodeList {
-    if (basic.name == network_name_polkadot) {
-      return _randomList(node_list_polkadot)
-          .map((e) => NetworkParams.fromJson(e))
-          .toList();
-    }
-    return _randomList(node_list_uniarts)
-        .map((e) => NetworkParams.fromJson(e))
-        .toList();
+    return node_list_uniarts.map((e) => NetworkParams.fromJson(e)).toList();
   }
 
   @override
   final Map<String, Widget> tokenIcons = {
     'UART': Image.asset(
-        'packages/polkawallet_plugin_uniarts/assets/images/tokens/UART.png'),
-    'DOT': Image.asset(
-        'packages/polkawallet_plugin_uniarts/assets/images/tokens/DOT.png'),
+        'packages/polkawallet_plugin_uniarts/assets/images/tokens/UART.png')
   };
 
   @override
@@ -117,7 +74,7 @@ class PluginUniarts extends PolkawalletPlugin {
           'packages/polkawallet_plugin_uniarts/assets/images/public/nav_$e.svg',
           color: basic.primaryColor,
         ),
-        content: e == 'staking' ? Staking(this, keyring) : Gov(this),
+        content: null,
       );
     }).toList();
   }
@@ -126,40 +83,7 @@ class PluginUniarts extends PolkawalletPlugin {
   Map<String, WidgetBuilder> getRoutes(Keyring keyring) {
     return {
       TxConfirmPage.route: (_) =>
-          TxConfirmPage(this, keyring, _service.getPassword),
-
-      // staking pages
-      StakePage.route: (_) => StakePage(this, keyring),
-      BondExtraPage.route: (_) => BondExtraPage(this, keyring),
-      ControllerSelectPage.route: (_) => ControllerSelectPage(this, keyring),
-      SetControllerPage.route: (_) => SetControllerPage(this, keyring),
-      UnBondPage.route: (_) => UnBondPage(this, keyring),
-      RebondPage.route: (_) => RebondPage(this, keyring),
-      SetPayeePage.route: (_) => SetPayeePage(this, keyring),
-      RedeemPage.route: (_) => RedeemPage(this, keyring),
-      PayoutPage.route: (_) => PayoutPage(this, keyring),
-      NominatePage.route: (_) => NominatePage(this, keyring),
-      StakingDetailPage.route: (_) => StakingDetailPage(this, keyring),
-      RewardDetailPage.route: (_) => RewardDetailPage(this, keyring),
-      ValidatorDetailPage.route: (_) => ValidatorDetailPage(this, keyring),
-
-      // governance pages
-      DemocracyPage.route: (_) => DemocracyPage(this, keyring),
-      ReferendumVotePage.route: (_) => ReferendumVotePage(this, keyring),
-      CouncilPage.route: (_) => CouncilPage(this, keyring),
-      CouncilVotePage.route: (_) => CouncilVotePage(this),
-      CandidateListPage.route: (_) => CandidateListPage(this, keyring),
-      CandidateDetailPage.route: (_) => CandidateDetailPage(this, keyring),
-      MotionDetailPage.route: (_) => MotionDetailPage(this, keyring),
-      ProposalDetailPage.route: (_) => ProposalDetailPage(this, keyring),
-      TreasuryPage.route: (_) => TreasuryPage(this, keyring),
-      SpendProposalPage.route: (_) => SpendProposalPage(this, keyring),
-      SubmitProposalPage.route: (_) => SubmitProposalPage(this, keyring),
-      SubmitTipPage.route: (_) => SubmitTipPage(this, keyring),
-      TipDetailPage.route: (_) => TipDetailPage(this, keyring),
-      DAppWrapperPage.route: (_) => DAppWrapperPage(this, keyring),
-      WalletExtensionSignPage.route: (_) =>
-          WalletExtensionSignPage(this, keyring, _service.getPassword),
+          TxConfirmPage(this, keyring, _service.getPassword)
     };
   }
 
@@ -175,44 +99,14 @@ class PluginUniarts extends PolkawalletPlugin {
 
   @override
   Future<void> onWillStart(Keyring keyring) async {
-    await GetStorage.init(basic.name == network_name_polkadot
-        ? plugin_polkadot_storage_key
-        : plugin_uniarts_storage_key);
-
+    await GetStorage.init(plugin_uniarts_storage_key);
     _store = PluginStore(_cache);
-
-    try {
-      _store.staking.loadCache(keyring.current.pubKey);
-      _store.gov.clearState();
-      _store.gov.loadCache();
-      print('uniarts plugin cache data loaded');
-    } catch (err) {
-      print(err);
-      print('load uniarts cache data failed');
-    }
-
     _service = PluginApi(this, keyring);
   }
 
   @override
-  Future<void> onStarted(Keyring keyring) async {
-    _service.staking.queryElectedInfo();
-  }
+  Future<void> onStarted(Keyring keyring) async {}
 
   @override
-  Future<void> onAccountChanged(KeyPairData acc) async {
-    _store.staking.loadAccountCache(acc.pubKey);
-  }
-
-  List _randomList(List input) {
-    final data = input.toList();
-    final res = List();
-    final _random = Random();
-    for (var i = 0; i < input.length; i++) {
-      final item = data[_random.nextInt(data.length)];
-      res.add(item);
-      data.remove(item);
-    }
-    return res;
-  }
+  Future<void> onAccountChanged(KeyPairData acc) async {}
 }

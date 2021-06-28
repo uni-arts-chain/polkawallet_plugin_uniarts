@@ -10,25 +10,7 @@ const node_list_uniarts = [
     'endpoint': 'wss://mainnet.uniarts.vip:9443',
   },
 ];
-const node_list_polkadot = [
-  {
-    'name': 'Polkadot (Live, hosted by PatractLabs)',
-    'ss58': 0,
-    'endpoint': 'wss://polkadot.elara.patract.io',
-  },
-  {
-    'name': 'Polkadot (Live, hosted by Parity)',
-    'ss58': 0,
-    'endpoint': 'wss://rpc.polkadot.io',
-  },
-  {
-    'name': 'Polkadot (Live, hosted by onfinality)',
-    'ss58': 0,
-    'endpoint': 'wss://polkadot.api.onfinality.io/public-ws',
-  },
-];
 
-// const home_nav_items = ['staking', 'governance'];
 const home_nav_items = [];
 
 const MaterialColor uniarts_blue = const MaterialColor(
@@ -49,7 +31,4 @@ const MaterialColor uniarts_blue = const MaterialColor(
 
 const String genesis_hash_uniarts =
     '0xbc20e8f3a4a9340f31bcf5be6288a98e064d84f67a94e41ed9e65d10e15e0077';
-const String genesis_hash_polkadot =
-    '0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3';
 const String network_name_uniarts = 'uniarts';
-const String network_name_polkadot = 'polkadot';

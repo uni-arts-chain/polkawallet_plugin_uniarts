@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:polkawallet_plugin_uniarts/polkawallet_plugin_uniarts.dart';
-import 'package:polkawallet_plugin_uniarts/service/gov.dart';
-import 'package:polkawallet_plugin_uniarts/service/staking.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:polkawallet_sdk/storage/types/keyPairData.dart';
 import 'package:polkawallet_sdk/utils/i18n.dart';
@@ -9,12 +7,7 @@ import 'package:polkawallet_ui/components/passwordInputDialog.dart';
 import 'package:polkawallet_ui/utils/i18n.dart';
 
 class PluginApi {
-  PluginApi(PluginUniarts plugin, Keyring keyring)
-      : staking = ApiStaking(plugin, keyring),
-        gov = ApiGov(plugin, keyring),
-        plugin = plugin;
-  final ApiStaking staking;
-  final ApiGov gov;
+  PluginApi(PluginUniarts plugin, Keyring keyring) : plugin = plugin;
 
   final PluginUniarts plugin;
 

@@ -20,7 +20,6 @@ import 'package:polkawallet_ui/pages/txConfirmPage.dart';
 
 void main() {
   final _plugins = [
-    PluginUniarts(name: 'polkadot'),
     PluginUniarts(),
   ];
 

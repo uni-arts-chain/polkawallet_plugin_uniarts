@@ -1,4 +1,3 @@
-import 'package:polkawallet_plugin_uniarts/store/staking/types/validatorData.dart';
 import 'package:polkawallet_ui/utils/index.dart';
 
 class PluginFmt {
@@ -40,33 +39,6 @@ class PluginFmt {
       'stakes': stakes,
       'points': points,
     };
-  }
-
-  static List<ValidatorData> filterValidatorList(List<ValidatorData> ls,
-      List<bool> filters, String search, Map accIndexMap) {
-    ls.retainWhere((i) {
-      // filters[0], no 20%+ comm
-      if (filters[0]) {
-        if (i.commission > 20) return false;
-      }
-
-      // filters[1], only with an ID
-      final Map accInfo = accIndexMap[i.accountId];
-      if (filters[1]) {
-        if (accInfo == null || accInfo['identity']['display'] == null) {
-          return false;
-        }
-      }
-
-      // filter by search input
-      final value = search.trim().toLowerCase();
-      return UI
-              .accountDisplayNameString(i.accountId, accInfo)
-              .toLowerCase()
-              .contains(value) ||
-          i.accountId.toLowerCase().contains(value);
-    });
-    return ls;
   }
 
   static List<List> filterCandidateList(
